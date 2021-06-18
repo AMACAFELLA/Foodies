@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1072623695431",
+    "project_id": "thefallow-915b2",
+    "storage_bucket": "thefallow-915b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072623695431:android:5d32508291636a12a0e362",
+        "android_client_info": {
+          "package_name": "com.macapella.foodies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1072623695431-mps1mfgeu8p71mk3g07qnb0qspgnkp5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByxYWcstApxc9hXjq_VZhGS8BEjZ6LNs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072623695431-mps1mfgeu8p71mk3g07qnb0qspgnkp5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

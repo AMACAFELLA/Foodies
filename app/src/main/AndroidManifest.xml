@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodies">
         <activity android:name=".AdminActivity"></activity>
-        <activity android:name=".DriverActivity" />
+        <activity android:name=".DeliveryActivity" />
         <activity android:name=".OrderConfirmationActivity" />
         <activity android:name=".VerificationActivity" />
         <activity android:name=".AccountActivity" />

@@ -6,8 +6,9 @@ public class ItemModel {
     String description;
     String price;
     String img;
+    Integer quantity;
 
-    public ItemModel (String name, String description, String price, String img) {
+    public ItemModel (String name, String description, String price, String img, Integer quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -48,5 +49,13 @@ public class ItemModel {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }

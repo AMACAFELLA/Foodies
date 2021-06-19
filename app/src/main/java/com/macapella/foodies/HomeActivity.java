@@ -56,4 +56,20 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
+    public void reduceQuantity(View view) {
+        TextView textView = (TextView) findViewById(R.id.quantity);
+        int quantity = Integer.parseInt(textView.getText().toString());
+        if (quantity > 0) {
+            quantity -= 1;
+            textView.setText(Integer.toString(quantity));
+        }
+    }
+
+    public void increaseQuantity(View view) {
+        TextView textView = (TextView) findViewById(R.id.quantity);
+        int quantity = Integer.parseInt(textView.getText().toString());
+        quantity += 1;
+        textView.setText(Integer.toString(quantity));
+    }
 }

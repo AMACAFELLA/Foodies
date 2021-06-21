@@ -1,5 +1,6 @@
 package com.macapella.foodies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -71,5 +72,10 @@ public class HomeActivity extends AppCompatActivity {
         int quantity = Integer.parseInt(textView.getText().toString());
         quantity += 1;
         textView.setText(Integer.toString(quantity));
+    }
+
+    public void switchCart(View view) {
+        Intent intent = new Intent(this, CartActivity.class);
+        startActivity(intent);
     }
 }

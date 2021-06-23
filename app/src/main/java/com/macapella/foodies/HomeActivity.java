@@ -1,61 +1,71 @@
 package com.macapella.foodies;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class HomeActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
-    public List <ItemModel> itemModelList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Context context = this;
 
-        //For Testing Only
-        ItemModel itemModel = new ItemModel();
-        itemModel.setName("Burger");
-        itemModel.setPrice("E 65");
-        itemModel.setDescription("Meat on bun.");
-        itemModel.setImg("https://www.thespruceeats.com/thmb/l4w6PvMqsz1EjueCAh_foPmYafM=/3456x3456/smart/filters:no_upscale()/garlic-burger-patties-333503-hero-01-e4df660ff27b4e5194fdff6d703a4f83.jpg");
-        itemModelList.add(itemModel);
+        //For Testing
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("menu")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List <ItemModel> itemModelList = new ArrayList<ItemModel>();
+                            QuerySnapshot querySnapshot = task.getResult();
+                            querySnapshot.forEach(documentSnapshot -> {ItemModel itemModel = new ItemModel(); itemModel.setName(documentSnapshot.getString("name")); itemModel.setPrice(documentSnapshot.getString("price")); itemModel.setDescription(documentSnapshot.getString("description")); itemModel.setImg(documentSnapshot.getString("img")); itemModelList.add(itemModel);});
+                            RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(context, itemModelList);
+                            recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                            recyclerView.setAdapter(recyclerViewAdapter);
+                        } else {
+                            Log.d("Error", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
         //
 
-        //For Testing Only
-        ItemModel itemModel1 = new ItemModel();
-        itemModel1.setName("Pasta");
-        itemModel1.setPrice("E 65");
-        itemModel1.setDescription("Thin buns.");
-        itemModel1.setImg("https://hips.hearstapps.com/delish/assets/17/36/1504715566-delish-fettuccine-alfredo.jpg");
-        itemModelList.add(itemModel1);
-        //
-
-        //For Testing Only
-        ItemModel itemModel2 = new ItemModel();
-        itemModel2.setName("Pizza");
-        itemModel2.setPrice("E 65");
-        itemModel2.setDescription("Meat on thin bun.");
-        itemModel2.setImg("https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe.jpg");
-        itemModelList.add(itemModel2);
-        //
-
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this, itemModelList);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     public void reduceQuantity(View view) {

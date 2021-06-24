@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,6 +27,7 @@ import java.util.Map;
 public class CartActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
+    String uid;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -34,8 +36,11 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         Context context = this;
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        uid = mAuth.getCurrentUser().getUid();
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("users").document("test").collection("cart")
+        db.collection("users").document(uid).collection("cart")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @RequiresApi(api = Build.VERSION_CODES.N)

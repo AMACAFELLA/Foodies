@@ -69,7 +69,6 @@ public class HomeActivity extends AppCompatActivity {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();
-        System.out.println(uid);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String itemName = name;
         Integer itemPrice = price;

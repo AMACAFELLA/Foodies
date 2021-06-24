@@ -1,35 +1,23 @@
 package com.macapella.foodies;
-
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-import com.bumptech.glide.signature.ObjectKey;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +26,7 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
-    public Map <String, String> cartList = new HashMap();
+    public Map <String, String> cartList = new HashMap<>();
 
 
     @Override
@@ -56,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            List <ItemModel> itemModelList = new ArrayList<ItemModel>();
+                            List <ItemModel> itemModelList = new ArrayList<>();
                             QuerySnapshot querySnapshot = task.getResult();
                             querySnapshot.forEach(documentSnapshot -> {ItemModel itemModel = new ItemModel(); itemModel.setName(documentSnapshot.getString("name")); itemModel.setPrice(Integer.parseInt(documentSnapshot.getString("price"))); itemModel.setQuantity(0); itemModel.setDescription(documentSnapshot.getString("description")); itemModel.setImg(documentSnapshot.getString("img")); itemModelList.add(itemModel);});
                             RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(context, itemModelList);
@@ -68,7 +56,6 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     }
                 });
-        //
 
     }
 

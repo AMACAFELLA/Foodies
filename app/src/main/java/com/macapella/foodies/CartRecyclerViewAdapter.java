@@ -16,12 +16,12 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.viewHolder> {
+public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerViewAdapter.viewHolder> {
 
     private Context mContext;
     private List<ItemModel> mData;
 
-    public RecyclerViewAdapter(Context mContext, List<ItemModel> mData) {
+    public CartRecyclerViewAdapter(Context mContext, List<ItemModel> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -31,16 +31,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        v = inflater.inflate(R.layout.menu_item, parent, false);
+        v = inflater.inflate(R.layout.cart_item, parent, false);
 
         return new viewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CartRecyclerViewAdapter.viewHolder holder, int position) {
 
         holder.name.setText(mData.get(position).getName());
-        holder.description.setText(mData.get(position).getDescription());
         holder.price.setText(mData.get(position).getPrice().toString());
         holder.quantity.setText(mData.get(position).getQuantity().toString());
 
@@ -59,15 +58,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 (view) -> {
                     TextView quantityView = holder.quantity;
                     int quantity = Integer.parseInt(quantityView.getText().toString());
-                        quantity += 1;
-                        quantityView.setText(Integer.toString(quantity));
+                    quantity += 1;
+                    quantityView.setText(Integer.toString(quantity));
 
                 }
         );
 
         AtomicReference<Boolean> hasClicked = new AtomicReference<>(false);
 
-        holder.addToCart.setOnClickListener(
+        holder.removeFromCart.setOnClickListener(
                 (view) -> {
                     HomeActivity homeActivity = new HomeActivity();
                     TextView quantityView = holder.quantity;
@@ -78,9 +77,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
         );
 
-        Glide.with(mContext)
-                .load(mData.get(position).getImg())
-                .into(holder.img);
     }
 
     @Override
@@ -92,26 +88,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class viewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
-        TextView description;
         TextView price;
-        ImageView img;
         TextView quantity;
         Button reduceQuantity;
         Button increaseQuantity;
-        Button addToCart;
+        Button removeFromCart;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
-            reduceQuantity = itemView.findViewById(R.id.reduceQuantity);
-            increaseQuantity = itemView.findViewById(R.id.increaseQuantity);
-            addToCart = itemView.findViewById(R.id.addToCart);
+            reduceQuantity = itemView.findViewById(R.id.cartReduceQuantity);
+            increaseQuantity = itemView.findViewById(R.id.cartIncreaseQuantity);
+            removeFromCart = itemView.findViewById(R.id.cartRemoveItem);
 
-            name = itemView.findViewById(R.id.itemName);
-            description = itemView.findViewById(R.id.itemDescription);
-            price = itemView.findViewById(R.id.itemPrice);
-            img = itemView.findViewById(R.id.itemImage);
-            quantity = itemView.findViewById(R.id.quantity);
+            name = itemView.findViewById(R.id.cartItemName);
+            price = itemView.findViewById(R.id.cartItemTotalPrice);
+            quantity = itemView.findViewById(R.id.cartItemQuantity);
         }
 
     }

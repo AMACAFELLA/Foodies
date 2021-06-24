@@ -4,15 +4,16 @@ public class ItemModel {
 
     String name;
     String description;
-    String price;
+    Integer price;
     String img;
     Integer quantity;
 
-    public ItemModel (String name, String description, String price, String img, Integer quantity) {
+    public ItemModel (String name, String description, Integer price, String img, Integer quantity) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.img = img;
+        this.quantity = quantity;
     }
 
     public ItemModel () {
@@ -35,11 +36,11 @@ public class ItemModel {
         this.description = description;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

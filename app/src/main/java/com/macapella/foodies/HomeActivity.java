@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
     public Map <String, String> cartList = new HashMap<>();
+    String uid;
 
 
     @Override
@@ -56,7 +58,6 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
     public void switchCart(View view) {
@@ -66,13 +67,16 @@ public class HomeActivity extends AppCompatActivity {
 
     public void addToCart(String name, Integer price, Integer quantity, Boolean clicked) {
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        uid = mAuth.getCurrentUser().getUid();
+        System.out.println(uid);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String itemName = name;
         Integer itemPrice = price;
 
         if (clicked == true) {
 
-            db.collection("users").document("test").collection("cart").document(itemName)
+            db.collection("users").document(uid).collection("cart").document(itemName)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
@@ -96,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
                                 cartList.put("quantity", Integer.toString(itemModel.getQuantity()));
                             }
 
-                            db.collection("users").document("test").collection("cart").document(itemName)
+                            db.collection("users").document(uid).collection("cart").document(itemName)
                                     .set(cartList)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -127,7 +131,7 @@ public class HomeActivity extends AppCompatActivity {
                 cartList.put("quantity", Integer.toString(itemModel.getQuantity()));
             }
 
-            db.collection("users").document("test").collection("cart").document(itemName)
+            db.collection("users").document(uid).collection("cart").document(itemName)
                     .set(cartList)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

@@ -39,7 +39,6 @@ public class HomeActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
     public Map <String, String> cartList = new HashMap();
-    public Map <String, Object> menuCatList = new HashMap();
 
 
     @Override
@@ -83,7 +82,6 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String itemName = name;
         Integer itemPrice = price;
-        menuCatList.put(itemName, itemName);
 
         if (clicked == true) {
 
@@ -157,20 +155,5 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     });
         }
-
-        db.collection("cart-test").document("test")
-                .update(menuCatList)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Success", "DocumentSnapshot successfully written!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("Error", "Error writing document", e);
-                    }
-                });
     }
 }

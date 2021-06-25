@@ -32,6 +32,8 @@ public class CartActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
     String uid;
+    String uName;
+    String uEmail;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -72,6 +74,12 @@ public class CartActivity extends AppCompatActivity {
 
     public void switchAccount(View view) {
         Intent intent = new Intent(this, AccountActivity.class);
+        startActivity(intent);
+    }
+
+    public void checkoutNow (View view) {
+
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 

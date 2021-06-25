@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
 
@@ -126,6 +130,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                     }
                                 }
                             });
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            Map<String, String> initalInfo = new HashMap<>();
+                            initalInfo.put("name", fullname);
+                            initalInfo.put("email", email);
+                            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .set(initalInfo);
                         }else {
                             Toast.makeText(RegisterUser.this,  "Failed to register!", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);

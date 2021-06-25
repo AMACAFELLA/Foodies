@@ -18,8 +18,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.viewHolder> {
 
-    private Context mContext;
-    private List<ItemModel> mData;
+    private final Context mContext;
+    private final List<ItemModel> mData;
 
     public RecyclerViewAdapter(Context mContext, List<ItemModel> mData) {
         this.mContext = mContext;

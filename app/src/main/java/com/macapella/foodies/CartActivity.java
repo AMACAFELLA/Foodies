@@ -150,7 +150,7 @@ public class CartActivity extends AppCompatActivity {
                             List <ItemModel> itemModelList = new ArrayList<ItemModel>();
                             QuerySnapshot querySnapshot = task.getResult();
                             querySnapshot.forEach(documentSnapshot -> {ItemModel itemModel = new ItemModel(); itemModel.setName(documentSnapshot.getString("name")); itemModel.setPrice(Integer.parseInt(documentSnapshot.getString("price"))); itemModel.setQuantity(Integer.parseInt(documentSnapshot.getString("quantity"))); itemModelList.add(itemModel);});
-                            String toRemove =  itemModelList.get(position).getName().toString();
+                            String toRemove = itemModelList.get(position).getName();
 
                             db.collection("users").document(uid).collection("cart").document(toRemove).delete();
 

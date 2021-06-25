@@ -26,6 +26,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.IOException;
 import java.util.HashMap;
@@ -302,12 +304,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void selectLocation(View view) throws IOException {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map <String, Object> mapInfo = new HashMap<>();
-        mapInfo.put("coordinates", myMarker.getPosition());
-
-        db.collection("users").document(mAuth.getCurrentUser().getUid())
-                .update(mapInfo);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("coordinates").setValue(myMarker.getPosition());
 
         Intent intent = new Intent(this, VerificationActivity.class);
         startActivity(intent);

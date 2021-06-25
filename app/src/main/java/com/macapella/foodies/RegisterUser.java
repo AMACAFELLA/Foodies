@@ -130,12 +130,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                     }
                                 }
                             });
-                            FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            Map<String, String> initalInfo = new HashMap<>();
-                            initalInfo.put("name", fullname);
-                            initalInfo.put("email", email);
-                            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .set(initalInfo);
                         }else {
                             Toast.makeText(RegisterUser.this,  "Failed to register!", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);

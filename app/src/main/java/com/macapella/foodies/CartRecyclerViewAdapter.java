@@ -50,6 +50,15 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
                     if (quantity > 0) {
                         quantity -= 1;
                         quantityView.setText(Integer.toString(quantity));
+                        CartActivity cartActivity = new CartActivity();
+                        cartActivity.changeQuantity(position, quantity);
+                        if (quantity == 0) {
+                            cartActivity.removeItem(position);
+
+                            mData.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, mData.size());
+                        }
                     }
                 }
         );
@@ -60,20 +69,21 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
                     int quantity = Integer.parseInt(quantityView.getText().toString());
                     quantity += 1;
                     quantityView.setText(Integer.toString(quantity));
+                    CartActivity cartActivity = new CartActivity();
+                    cartActivity.changeQuantity(position, quantity);
 
                 }
         );
 
-        AtomicReference<Boolean> hasClicked = new AtomicReference<>(false);
-
         holder.removeFromCart.setOnClickListener(
                 (view) -> {
-                    HomeActivity homeActivity = new HomeActivity();
-                    TextView quantityView = holder.quantity;
-                    TextView priceView = holder.price;
-                    TextView nameView = holder.name;
-                    homeActivity.addToCart(nameView.getText().toString(), Integer.parseInt(priceView.getText().toString()), Integer.parseInt(quantityView.getText().toString()), hasClicked.get());
-                    hasClicked.set(true);
+
+                    CartActivity cartActivity = new CartActivity();
+                    cartActivity.removeItem(position);
+
+                    mData.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, mData.size());
                 }
         );
 

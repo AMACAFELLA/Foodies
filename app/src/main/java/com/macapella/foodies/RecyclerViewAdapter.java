@@ -65,16 +65,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
         );
 
-        AtomicReference<Boolean> hasClicked = new AtomicReference<>(false);
-
         holder.addToCart.setOnClickListener(
                 (view) -> {
                     HomeActivity homeActivity = new HomeActivity();
                     TextView quantityView = holder.quantity;
                     TextView priceView = holder.price;
                     TextView nameView = holder.name;
-                    homeActivity.addToCart(nameView.getText().toString(), Integer.parseInt(priceView.getText().toString()), Integer.parseInt(quantityView.getText().toString()), hasClicked.get());
-                    hasClicked.set(true);
+                    homeActivity.addToCart(nameView.getText().toString(), Integer.parseInt(priceView.getText().toString()), Integer.parseInt(quantityView.getText().toString()));
+
                 }
         );
 

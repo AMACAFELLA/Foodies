@@ -28,7 +28,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     // Build a GoogleSignInClient with the options specified by gso.
     private FirebaseAuth mAuth;
     private TextView banner, registerUser;
-    private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
+    private EditText editTextFullName, editTextPhone, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
 // ...
 
@@ -46,7 +46,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         registerUser.setOnClickListener(this);
 
         editTextFullName = (EditText) findViewById(R.id.fullname);
-        editTextAge = (EditText) findViewById(R.id.age);
+        editTextPhone = (EditText) findViewById(R.id.phone);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
 
@@ -70,7 +70,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullname = editTextFullName.getText().toString().trim();
-        String age = editTextAge.getText().toString().trim();
+        String phone = editTextPhone.getText().toString().trim();
 
         if(fullname.isEmpty()){
             editTextFullName.setError("Your full name is required!");
@@ -78,9 +78,9 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if(age.isEmpty()){
-            editTextAge.setError("Your age is required!");
-            editTextAge.requestFocus();
+        if(phone.isEmpty()){
+            editTextPhone.setError("Your phone number is required!");
+            editTextPhone.requestFocus();
             return;
         }
         if(email.isEmpty()){
@@ -112,7 +112,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            User user = new User(fullname, age, email);
+                            User user = new User(fullname, phone, email);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

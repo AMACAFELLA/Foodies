@@ -1,7 +1,7 @@
 package com.macapella.foodies;
 
 public class User {
-    public String fullname, age, email;
+    public String fullname, phone, email;
     public Boolean admin = false;
     public Boolean customer = true;
     public Boolean delivery = false;
@@ -10,9 +10,9 @@ public class User {
 
     }
 
-    public User(String fullname, String age, String email){
+    public User(String fullname, String phone, String email){
         this.fullname = fullname;
-        this.age = age;
+        this.phone = phone;
         this.email = email;
     }
 

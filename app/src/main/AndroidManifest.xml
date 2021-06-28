@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.macapella.foodies">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
 
@@ -23,7 +24,6 @@
         <activity android:name=".CartActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".GetstartedActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -38,6 +38,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.google.firebase:firebase-database:20.0.0'
+    implementation 'io.github.openunirest:unirest-java-parent:3.3.06'
+    implementation 'io.github.openunirest:unirest-java:2.5.03'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

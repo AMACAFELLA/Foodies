@@ -30,7 +30,7 @@ public class VerificationActivity extends AppCompatActivity {
         String name = mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("fullname").get().toString();
         String email = mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("email").get().toString();
         String phoneNumber = mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("phone").get().toString();
-        String longitude = mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("coordinates").child("longitude").;
+        String longitude = mDatabase.child("Users").child(mAuth.getCurrentUser().getUid()).child("coordinates").child("longitude").toString();
 
     }
 

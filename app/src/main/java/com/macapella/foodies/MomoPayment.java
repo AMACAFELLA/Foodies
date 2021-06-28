@@ -1,32 +1,30 @@
 package com.macapella.foodies;
 
-import com.android.volley.toolbox.HttpResponse;
+import android.os.Build;
 
-import org.apache.http.impl.auth.HttpAuthenticator;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import io.github.openunirest.http.Unirest;
-import unirest.HttpResponse;
-import unirest.Unirest;
+import androidx.annotation.RequiresApi;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Map;
 import java.util.UUID;
 
+import kong.unirest.HttpResponse;
+import kong.unirest.Unirest;
+import kong.unirest.json.JSONObject;
+
 public class MomoPayment {
     static String subscriptionKey = "13180c04b3b34c959d5daca389f58df4";
     static String paymentReferenceGlobal;
 
-    public static void main(String[] args) throws JSONException {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void mainFun() {
         String userCellNumber = createUuid();
         createProvisioningUser(userCellNumber, subscriptionKey);
 
         JSONObject jsonObject = new JSONObject(createApiForUser(userCellNumber, subscriptionKey));
         Map<String, Object> userApiMap = jsonObject.toMap();
         String userApiKey = userApiMap.get("apiKey").toString();
-
 
         JSONObject jsonObject1 = new JSONObject(createApiToken(userCellNumber, userApiKey, subscriptionKey));
         Map<String, Object> userApiTokenMap = jsonObject1.toMap();
@@ -93,6 +91,7 @@ public class MomoPayment {
         return response.getBody();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static String createApiToken(String userCellNumber, String apiKey, String subscriptionKey) {
         /*
          * This method is used to create a user's API Token. This token is used to authorize a user's transactions.
@@ -107,7 +106,7 @@ public class MomoPayment {
         System.out.println("Base64 Basic authorization is: " + encoding);
 
         HttpResponse<String> response = Unirest.post("https://sandbox.momodeveloper.mtn.com/collection/token/")
-                .header("Ocp-Apim-Subscription-Key",subscriptionKey)
+                .header("Ocp-Apim-Subscription-Key", subscriptionKey)
                 .header("Authorization", "Basic " + encoding)
                 .asString();
 
@@ -169,7 +168,7 @@ public class MomoPayment {
                 .header("Ocp-Apim-Subscription-Key", subscriptionKey)
                 .header("Authorization", "Bearer " + userApiToken)
                 .header("Content-Type", "text/plain")
-                .body("{\n  \"amount\": \"" + paymentAmount + "\",\n  \"currency\": \"" + currency +"\",\n  \"externalId\": \"" + paymentReference + "\",\n  \"payer\": {\n    \"partyIdType\": \"MSISDN\",\n    \"partyId\": \""+ userCellNumber +"\"\n  },\n  \"payerMessage\": \"" + payerMessage + "\",\n  \"payeeNote\": \"" + payeeNote + "\"\n}")
+                .body("{\n  \"amount\": \"" + paymentAmount + "\",\n  \"currency\": \"" + currency + "\",\n  \"externalId\": \"" + paymentReference + "\",\n  \"payer\": {\n    \"partyIdType\": \"MSISDN\",\n    \"partyId\": \"" + userCellNumber + "\"\n  },\n  \"payerMessage\": \"" + payerMessage + "\",\n  \"payeeNote\": \"" + payeeNote + "\"\n}")
                 .asString();
 
         System.out.println("Request to Pay: " + response.getStatusText());
@@ -193,7 +192,7 @@ public class MomoPayment {
         System.out.println(response.getBody());
 
     }
-
-
 }
+
+
 

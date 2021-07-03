@@ -27,48 +27,14 @@
         app:layout_constraintStart_toEndOf="@+id/orderItemName"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/cartRemoveItem"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:text="X"
-        app:layout_constraintStart_toEndOf="@+id/cartIncreaseQuantity"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/cartIncreaseQuantity"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="+"
-        app:layout_constraintStart_toEndOf="@+id/orderItemQuantity"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/orderItemQuantity"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/cartReduceQuantity"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/cartReduceQuantity"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="8dp"
-        android:text="-"
         app:layout_constraintStart_toEndOf="@+id/orderItemTotalPrice"
         app:layout_constraintTop_toTopOf="parent" />
 

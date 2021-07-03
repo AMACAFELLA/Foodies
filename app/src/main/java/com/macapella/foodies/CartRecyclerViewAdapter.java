@@ -5,16 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerViewAdapter.viewHolder> {
 
@@ -111,9 +107,9 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
             increaseQuantity = itemView.findViewById(R.id.cartIncreaseQuantity);
             removeFromCart = itemView.findViewById(R.id.cartRemoveItem);
 
-            name = itemView.findViewById(R.id.cartItemName);
-            price = itemView.findViewById(R.id.cartItemTotalPrice);
-            quantity = itemView.findViewById(R.id.cartItemQuantity);
+            name = itemView.findViewById(R.id.orderItemName);
+            price = itemView.findViewById(R.id.orderItemTotalPrice);
+            quantity = itemView.findViewById(R.id.orderItemQuantity);
         }
 
     }

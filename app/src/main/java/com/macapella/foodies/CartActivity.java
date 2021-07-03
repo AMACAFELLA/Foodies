@@ -23,6 +23,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,8 +34,7 @@ public class CartActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
     String uid;
-    String uName;
-    String uEmail;
+    Context context = this;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -79,8 +80,26 @@ public class CartActivity extends AppCompatActivity {
 
     public void checkoutNow (View view) {
 
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("cart")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot.size() > 0) {
+                            Intent intent = new Intent(context, MapsActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast toast = Toast.makeText(context, "Your cart is empty!", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+                });
+
+
     }
 
     public void changeQuantity(int position, int quantity) {

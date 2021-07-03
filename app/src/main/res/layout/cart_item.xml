@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/orderItemName"
+        android:id="@+id/confirmOrderItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -24,7 +24,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/orderItemName"
+        app:layout_constraintStart_toEndOf="@+id/confirmOrderItemName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

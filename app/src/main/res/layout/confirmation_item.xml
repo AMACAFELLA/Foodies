@@ -17,34 +17,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/orderItemTotalPrice"
+        android:id="@+id/confirmOrderItemQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/confirmOrderItemName"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/orderItemQuantity"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/orderItemTotalPrice"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/E_Order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="E"
-        app:layout_constraintEnd_toStartOf="@+id/orderItemTotalPrice"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

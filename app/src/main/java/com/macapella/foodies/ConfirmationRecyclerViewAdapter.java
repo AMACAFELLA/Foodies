@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecyclerViewAdapter.viewHolder> {
+public class ConfirmationRecyclerViewAdapter extends RecyclerView.Adapter<ConfirmationRecyclerViewAdapter.viewHolder> {
 
     private final Context mContext;
     private final List<ItemModel> mData;
 
-    public OrderRecyclerViewAdapter(Context mContext, List<ItemModel> mData) {
+    public ConfirmationRecyclerViewAdapter(Context mContext, List<ItemModel> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -26,17 +26,16 @@ public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecycler
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        v = inflater.inflate(R.layout.order_item, parent, false);
+        v = inflater.inflate(R.layout.confirmation_item, parent, false);
 
         return new viewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrderRecyclerViewAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ConfirmationRecyclerViewAdapter.viewHolder holder, int position) {
 
         holder.name.setText(mData.get(position).getName());
-        holder.price.setText(mData.get(position).getPrice().toString());
-        holder.quantity.setText(mData.get(position).getQuantity().toString());
+        holder.quantity.setText(Integer.toString(mData.get(position).getQuantity()));
 
     }
 
@@ -49,15 +48,13 @@ public class OrderRecyclerViewAdapter extends RecyclerView.Adapter<OrderRecycler
     public static class viewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
-        TextView price;
         TextView quantity;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.confirmOrderItemName);
-            price = itemView.findViewById(R.id.orderItemTotalPrice);
-            quantity = itemView.findViewById(R.id.orderItemQuantity);
+            quantity = itemView.findViewById(R.id.confirmOrderItemQuantity);
         }
 
     }

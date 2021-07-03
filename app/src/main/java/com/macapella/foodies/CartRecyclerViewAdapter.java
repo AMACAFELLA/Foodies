@@ -107,7 +107,7 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
             increaseQuantity = itemView.findViewById(R.id.cartIncreaseQuantity);
             removeFromCart = itemView.findViewById(R.id.cartRemoveItem);
 
-            name = itemView.findViewById(R.id.orderItemName);
+            name = itemView.findViewById(R.id.confirmOrderItemName);
             price = itemView.findViewById(R.id.orderItemTotalPrice);
             quantity = itemView.findViewById(R.id.orderItemQuantity);
         }

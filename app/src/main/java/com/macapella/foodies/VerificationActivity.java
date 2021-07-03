@@ -26,9 +26,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.DoubleStream;
 
 public class VerificationActivity extends AppCompatActivity {
 
@@ -154,6 +156,34 @@ public class VerificationActivity extends AppCompatActivity {
                 }
             }
         });
+
+        db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("cart")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            List<ItemModel> itemModelList = new ArrayList<ItemModel>();
+                            QuerySnapshot querySnapshot = task.getResult();
+                            querySnapshot.forEach(documentSnapshot -> {ItemModel itemModel = new ItemModel(); itemModel.setName(documentSnapshot.getString("name")); itemModel.setPrice(Integer.parseInt(documentSnapshot.getString("price"))); itemModel.setQuantity(Integer.parseInt(documentSnapshot.getString("quantity"))); itemModelList.add(itemModel);});
+                            List<Double> priceList = new ArrayList<Double>();
+                            itemModelList.forEach(item -> {
+                                int quantity = item.getQuantity();
+                                double price = item.getPrice();
+                                double quantityPrice = quantity * price;
+                                priceList.add(quantityPrice);
+                            });
+                            double totalPrice = priceList.stream().mapToDouble(price -> price).sum();
+                            Map<String, Object> priceMap = new HashMap<>();
+                            priceMap.put("totalPrice", totalPrice);
+                            db.collection("users").document(mAuth.getCurrentUser().getUid())
+                                    .update(priceMap);
+                        } else {
+                            Log.d("Error", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
 
         Intent intent = new Intent(this, PaymentActivity.class);

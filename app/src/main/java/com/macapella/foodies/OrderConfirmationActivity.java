@@ -61,7 +61,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
                                         String totalPrice = String.format("%.02f", totalPriceFloat);
                                         String address = orderData.get("latitude").toString() + ", " + orderData.get("longitude").toString();
                                         Map<String, Object> items = ((Map<String, Object>) orderData.get("order-items"));
-                                        System.out.println(items);
                                         List<ItemModel> itemModelList = new ArrayList<ItemModel>();
                                         for (Map.Entry<String,Object> entry : items.entrySet()) {
                                             ItemModel itemModel = new ItemModel();

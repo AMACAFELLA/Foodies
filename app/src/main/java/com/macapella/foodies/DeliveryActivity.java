@@ -13,6 +13,9 @@ import android.os.Bundle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -74,7 +77,40 @@ public class DeliveryActivity extends AppCompatActivity {
     }
 
     public void confirmDelivery(String number) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        Map<String, Object> statusStart = new HashMap<String, Object>();
+        statusStart.put("status", "Completed");
+        db.collection("active-orders").document(number)
+                .update(statusStart);
+
+        db.collection("active-orders").document(number)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        Map<String, Object> docData = documentSnapshot.getData();
+                        String user = docData.get("user").toString();
+                        Map<String, Object> items = ((Map<String, Object>) docData.get("order-items"));
+
+                        Map<String, Object> orderData = new HashMap<>();
+                        orderData.put("name", docData.get("name").toString());
+                        orderData.put("email", docData.get("email").toString());
+                        orderData.put("phone", docData.get("phone").toString());
+                        orderData.put("totalPrice", docData.get("totalPrice").toString());
+                        orderData.put("orderNumber", docData.get("order-number").toString());
+                        orderData.put("status", docData.get("status").toString());
+                        orderData.put("order-items", items);
+
+                        mDatabase.child("Users").child(user).child("past-orders").child(number)
+                                .updateChildren(orderData);
+
+                        db.collection("active-orders").document(number)
+                                .delete();
+                    }
+                });
     }
 
     public void startDelivery(String number) {

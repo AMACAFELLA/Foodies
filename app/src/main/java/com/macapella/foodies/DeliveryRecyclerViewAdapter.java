@@ -57,6 +57,9 @@ public class DeliveryRecyclerViewAdapter extends RecyclerView.Adapter<DeliveryRe
                 (view) -> {
                     deliveryActivity.confirmDelivery(mData.get(position).getOrderNumber());
 
+                    mData.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, mData.size());
                 }
         );
 

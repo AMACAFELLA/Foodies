@@ -67,7 +67,7 @@ public class PaymentActivity extends AppCompatActivity {
                                         DocumentSnapshot documentSnapshot1 = task.getResult();
                                         int orderCount = Integer.parseInt(documentSnapshot1.get("order-count").toString());
                                         orderCount += 1;
-                                        String orderString = "Order #" + Integer.toString(orderCount);
+                                        String orderString = "Order " + Integer.toString(orderCount);
 
                                         Map<String, Object> order = new HashMap<>();
                                         order.put("order-number", orderString);

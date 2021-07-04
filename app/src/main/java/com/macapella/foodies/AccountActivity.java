@@ -87,4 +87,9 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void onDeliveryClick (View view) {
+        Intent intent = new Intent(this, DeliveryActivity.class);
+        startActivity(intent);
+    }
 }

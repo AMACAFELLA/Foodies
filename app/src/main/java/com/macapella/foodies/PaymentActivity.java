@@ -59,18 +59,18 @@ public class PaymentActivity extends AppCompatActivity {
                         String totalPrice = documentSnapshot.get("totalPrice").toString();
 
 
-                        db.collection("active-orders").document("order-number")
+                        db.collection("order-count").document("order-count")
                                 .get()
                                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
                                         DocumentSnapshot documentSnapshot1 = task.getResult();
-                                        int orderCount = Integer.parseInt(documentSnapshot1.get("ordercount").toString());
+                                        int orderCount = Integer.parseInt(documentSnapshot1.get("order-count").toString());
                                         orderCount += 1;
                                         String orderString = "Order #" + Integer.toString(orderCount);
 
                                         Map<String, Object> order = new HashMap<>();
-                                        order.put("order-number", orderCount);
+                                        order.put("order-number", orderString);
                                         order.put("name", orderName);
                                         order.put("email", orderEmail);
                                         order.put("phone", tempPhone);
@@ -102,8 +102,8 @@ public class PaymentActivity extends AppCompatActivity {
                                                     }
                                                 });
                                         Map<String, Object> orderNumber = new HashMap<>();
-                                        orderNumber.put("ordercount", orderCount);
-                                        db.collection("active-orders").document("order-number")
+                                        orderNumber.put("order-count", orderCount);
+                                        db.collection("order-count").document("order-count")
                                                 .update(orderNumber);
 
                                         db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("cart")

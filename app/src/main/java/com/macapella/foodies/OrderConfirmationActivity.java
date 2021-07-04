@@ -55,7 +55,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
                                         Map<String, Object> orderData = documentSnapshot.getData();
                                         String email = orderData.get("email").toString();
                                         String name = orderData.get("name").toString();
-                                        String orderNumber = "Order #" + orderData.get("order-number").toString();
+                                        String orderNumber = orderData.get("order-number").toString();
                                         String phone = orderData.get("phone").toString();
                                         float totalPriceFloat = Float.parseFloat(orderData.get("totalPrice").toString());
                                         String totalPrice = String.format("%.02f", totalPriceFloat);

@@ -19,6 +19,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -115,8 +123,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //Check to see if user is verified
                     if(user.isEmailVerified()) {
                         //redirect to menu not sure what activity that will be.
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                        finish();
+                        DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
+                        mData.child("Users").child(mAuth.getCurrentUser().getUid()).child("admin")
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+                                        DataSnapshot dataSnapshot = task.getResult();
+                                        Boolean admin = Boolean.parseBoolean(dataSnapshot.getValue().toString());
+
+                                        if (admin == true) {
+                                            startActivity(new Intent(LoginActivity.this, AccountSelectionActivity.class));
+                                            finish();
+                                        } else {
+                                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                            finish();
+                                        }
+                                    }
+                                });
+
                     }
                     //if the user is not send a email verification link.
                     else{

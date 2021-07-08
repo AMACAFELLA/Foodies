@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Foodies"
         android:usesCleartextTraffic="true">
-        <activity android:name=".OrderHistoryActivity"></activity>
+        <activity android:name=".AccountSelectionActivity"></activity>
+        <activity android:name=".OrderHistoryActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".DeliveryActivity" />

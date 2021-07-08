@@ -132,13 +132,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         DataSnapshot dataSnapshot = task.getResult();
                                         Boolean admin = Boolean.parseBoolean(dataSnapshot.getValue().toString());
 
-                                        if (admin == true) {
-                                            startActivity(new Intent(LoginActivity.this, AccountSelectionActivity.class));
-                                            finish();
-                                        } else {
-                                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                                            finish();
-                                        }
+                                        mData.child("Users").child(mAuth.getCurrentUser().getUid()).child("delivery")
+                                                .get()
+                                                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+                                                        DataSnapshot dataSnapshot1 = task.getResult();
+                                                        Boolean delivery = Boolean.parseBoolean(dataSnapshot1.getValue().toString());
+
+                                                        if (admin == true) {
+                                                            startActivity(new Intent(LoginActivity.this, AccountSelectionActivity.class));
+                                                            finish();
+                                                        } else if (delivery == true) {
+                                                            startActivity(new Intent(LoginActivity.this, AccountSelectionActivity.class));
+                                                            finish();
+                                                        } else {
+                                                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                                            finish();
+                                                        }
+                                                    }
+                                                });
                                     }
                                 });
 

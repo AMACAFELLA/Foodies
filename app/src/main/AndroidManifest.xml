@@ -15,6 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".RVActivity"></activity>
         <activity android:name=".OrderHistoryActivity" />
+        <activity android:name=".AccountSelectionActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".AdminActivity" />
         <activity android:name=".DeliveryActivity" />

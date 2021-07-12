@@ -18,10 +18,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -30,35 +35,85 @@ public class HomeActivity extends AppCompatActivity {
     public Map <String, String> cartList = new HashMap<>();
     String uid;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Context context = this;
 
-        //
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("menu")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            List <ItemModel> itemModelList = new ArrayList<>();
-                            QuerySnapshot querySnapshot = task.getResult();
-                            querySnapshot.forEach(documentSnapshot -> {ItemModel itemModel = new ItemModel(); itemModel.setName(documentSnapshot.getString("name")); itemModel.setPrice(Integer.parseInt(documentSnapshot.getString("price"))); itemModel.setQuantity(0); itemModel.setDescription(documentSnapshot.getString("description")); itemModel.setImg(documentSnapshot.getString("img")); itemModelList.add(itemModel);});
-                            RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(context, itemModelList);
-                            recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                            recyclerView.setAdapter(recyclerViewAdapter);
-                        } else {
-                            Log.d("Error", "Error getting documents: ", task.getException());
+                    public void onComplete(@NonNull @NotNull Task<QuerySnapshot> task) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        List<ItemModel> itemModelList = new ArrayList<>();
+                        Map<String, String> categoryMap = new HashMap<>();
+                        List<String> categoryList = new ArrayList<>();
+                        List<ParentItem> parentItemList = new ArrayList<>();
+                        querySnapshot.forEach(documentSnapshot -> {
+                            ItemModel itemModel = new ItemModel();
+                            itemModel.setName(documentSnapshot.getString("name"));
+                            itemModel.setPrice(Integer.parseInt(documentSnapshot.getString("price")));
+                            itemModel.setDescription(documentSnapshot.getString("description"));
+                            itemModel.setImg(documentSnapshot.getString("img"));
+                            itemModel.setCategory(documentSnapshot.getString("category"));
+                            itemModel.setQuantity(0);
+                            itemModelList.add(itemModel);
+                        });
+                        itemModelList.forEach( item -> {
+                            categoryMap.put(item.getCategory(), item.getCategory());
+                        });
+                        for (Map.Entry<String,String> entry : categoryMap.entrySet()){
+                            categoryList.add(entry.getKey());
                         }
+                        categoryList.forEach(category -> {
+                            List<ItemModel> childList = new ArrayList<>();
+                            itemModelList.forEach( itemModel -> {
+                                if (itemModel.category.equals(category)){
+                                    childList.add(itemModel);
+                                }
+                            });
+                            ParentItem parentItem = new ParentItem(category, childList);
+                            parentItemList.add(parentItem);
+                        });
+
+
+
+
+                        RecyclerView
+                                ParentRecyclerViewItem
+                                = findViewById(
+                                R.id.recyclerView);
+
+                        // Initialise the Linear layout manager
+                        LinearLayoutManager
+                                layoutManager
+                                = new LinearLayoutManager(
+                                context);
+
+                        // Pass the arguments
+                        // to the parentItemAdapter.
+                        // These arguments are passed
+                        // using a method ParentItemList()
+                        ParentItemAdapter
+                                parentItemAdapter
+                                = new ParentItemAdapter(context,
+                                parentItemList);
+
+                        // Set the layout manager
+                        // and adapter for items
+                        // of the parent recyclerview
+                        ParentRecyclerViewItem
+                                .setAdapter(parentItemAdapter);
+                        ParentRecyclerViewItem
+                                .setLayoutManager(layoutManager);
                     }
                 });
+
     }
+
 
     public void switchCart(View view) {
         Intent intent = new Intent(this, CartActivity.class);

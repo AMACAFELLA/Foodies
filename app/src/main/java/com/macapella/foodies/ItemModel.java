@@ -7,13 +7,15 @@ public class ItemModel {
     Integer price;
     String img;
     Integer quantity;
+    String category;
 
-    public ItemModel (String name, String description, Integer price, String img, Integer quantity) {
+    public ItemModel (String name, String description, Integer price, String img, Integer quantity, String category) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.img = img;
         this.quantity = quantity;
+        this.category = category;
     }
 
     public ItemModel () {
@@ -58,5 +60,13 @@ public class ItemModel {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

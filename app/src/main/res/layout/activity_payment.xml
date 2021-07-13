@@ -6,14 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".PaymentActivity">
 
-    <Button
-        android:id="@+id/confirmPayment"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:onClick="onConfirm"
-        android:text="Confirm Payment"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="16dp"
+        android:text="Payment for the order will be made upon delivery. Below is the total for your order:"
+        android:textAlignment="center"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Total Price:"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <TextView
+        android:id="@+id/paymentTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:onClick="onConfirm"
+        android:text="Confirm and Submit Order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentTotal" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

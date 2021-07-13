@@ -36,15 +36,24 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
     public void onBindViewHolder(@NonNull CartRecyclerViewAdapter.viewHolder holder, int position) {
 
         holder.name.setText(mData.get(position).getName());
-        holder.price.setText(mData.get(position).getPrice().toString());
+        Integer pricePerItem = mData.get(position).getPrice();
+        Integer quantityOfItem = mData.get(position).getQuantity();
+        int priceNumber = pricePerItem * quantityOfItem;
+        String price = Integer.toString(priceNumber);
+        holder.price.setText(price);
         holder.quantity.setText(mData.get(position).getQuantity().toString());
 
         holder.reduceQuantity.setOnClickListener(
                 (view) -> {
                     TextView quantityView = holder.quantity;
+                    TextView priceView = holder.price;
+                    int priceData = mData.get(position).getPrice();
                     int quantity = Integer.parseInt(quantityView.getText().toString());
                     if (quantity > 0) {
                         quantity -= 1;
+                        int newPriceNumber = quantity * priceData;
+                        String newPrice = Integer.toString(newPriceNumber);
+                        priceView.setText(newPrice);
                         quantityView.setText(Integer.toString(quantity));
                         CartActivity cartActivity = new CartActivity();
                         cartActivity.changeQuantity(position, quantity);
@@ -62,8 +71,13 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         holder.increaseQuantity.setOnClickListener(
                 (view) -> {
                     TextView quantityView = holder.quantity;
+                    TextView priceView = holder.price;
+                    int priceData = mData.get(position).getPrice();
                     int quantity = Integer.parseInt(quantityView.getText().toString());
                     quantity += 1;
+                    int newPriceNumber = quantity * priceData;
+                    String newPrice = Integer.toString(newPriceNumber);
+                    priceView.setText(newPrice);
                     quantityView.setText(Integer.toString(quantity));
                     CartActivity cartActivity = new CartActivity();
                     cartActivity.changeQuantity(position, quantity);

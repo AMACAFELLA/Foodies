@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -38,6 +39,23 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(mAuth.getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        String price = documentSnapshot.get("totalPrice").toString();
+                        System.out.println(price);
+                        String priceText = "E " + price + "0";
+                        TextView textView = (TextView) findViewById(R.id.paymentTotal);
+                        textView.setText(priceText);
+                    }
+                });
+
     }
 
     public void onConfirm(View view)  {

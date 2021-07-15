@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".AccountActivity">
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile_src" />
+
     <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
@@ -65,6 +76,7 @@
         android:id="@+id/signOut"
         android:text="Logout"
         android:textSize="20sp"
+        android:background="@drawable/btn_gradient_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -78,32 +90,10 @@
         android:layout_height="47dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="44dp"
-
+        android:background="@drawable/btn_gradient_style"
         android:text="Order History"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/adminPage"
-        android:layout_width="199dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="44dp"
-        android:text="Admin"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/deliveryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="onDeliveryClick"
-        android:text="Delivery"
-        app:layout_constraintBottom_toTopOf="@+id/orderHist"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,13 +47,7 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(new Intent(AccountActivity.this, OrderHistoryActivity.class));
             }
         });
-        adminP = (Button) findViewById(R.id.adminPage);
-        adminP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AccountActivity.this, AdminActivity.class));
-            }
-        });
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");

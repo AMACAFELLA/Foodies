@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity"
-    android:background="#152421">
+    tools:context=".SplashActivity">
 
     <ImageView
         android:id="@+id/img_splash"
         android:layout_width="wrap_content"
         android:layout_height="900dp"
         android:elevation="2dp"
-        android:src="@drawable/new_fallow"
+        android:src="@drawable/final_logo"
         app:layout_constraintVertical_bias="0"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,6 +22,6 @@
     <com.cuberto.liquid_swipe.LiquidPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

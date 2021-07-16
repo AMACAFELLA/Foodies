@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -29,10 +31,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class OrderHistoryActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference reference;
+    public RecyclerView recyclerView;
+    Context context = this;
+
 
     private String userID;
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -42,32 +48,65 @@ public class OrderHistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order_history);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("active-orders");
+        DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
         userID = user.getUid();
-        final TextView Orderstatus = (TextView) findViewById(R.id.status);
-        final TextView Orderphone = (TextView) findViewById(R.id.orderPhone);
-        final TextView Orderlocation = (TextView) findViewById(R.id.orderLocation);
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                User historyOrder = snapshot.getValue(User.class);
+        mData.child("Users").child(userID).child("active-order")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+                        DataSnapshot dataSnapshot = task.getResult();
+                        String orderNumber = dataSnapshot.getValue().toString();
 
-                if(historyOrder != null){
-                    String name = historyOrder.fullname;
-                    String email = historyOrder.email;
-                    String phone = historyOrder.phone;
+                        db.collection("active-orders").document(orderNumber)
+                                .get()
+                                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
+                                        DocumentSnapshot documentSnapshot = task.getResult();
 
-                    Orderstatus.setText("Welcome, " + name);
-                    Orderphone.setText("Name: " + name);
-                    Orderlocation.setText("Email" + email);
+                                        String name = documentSnapshot.getString("name");
+                                        String orderNumber = documentSnapshot.getString("order-number");
+                                        String status = documentSnapshot.getString("status");
+                                        String totalToBePaid = "E " + documentSnapshot.getString("totalPrice") + "0";
 
-                }
-            }
+                                        TextView nameText = (TextView) findViewById(R.id.activeOrderName);
+                                        TextView numberText = (TextView) findViewById(R.id.activeOrderNumber);
+                                        TextView statusText = (TextView) findViewById(R.id.activeOrderStatus);
+                                        TextView totalText = (TextView) findViewById(R.id.activeOrderTotal);
 
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                Toast.makeText(OrderHistoryActivity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
-            }
-        });
+                                        nameText.setText(name);
+                                        numberText.setText(orderNumber);
+                                        statusText.setText(status);
+                                        totalText.setText(totalToBePaid);
+                                    }
+                                });
+                    }
+                });
+
+        mData.child("Users").child(userID).child("past-orders")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
+                        DataSnapshot dataSnapshot = task.getResult();
+                        List<OrderModel> orderModelList = new ArrayList<>();
+                        for (DataSnapshot child: dataSnapshot.getChildren()) {
+                            OrderModel orderModel = new OrderModel();
+                            orderModel.setName(child.child("name").getValue().toString());
+                            orderModel.setStatus(child.child("status").getValue().toString());
+                            orderModel.setTotalToPay(child.child("totalPrice").getValue().toString());
+                            orderModel.setOrderNumber(child.child("orderNumber").getValue().toString());
+                            orderModelList.add(orderModel);
+                        }
+
+                        OrderHistoryRecyclerViewAdapter orderHistoryRecyclerViewAdapter = new OrderHistoryRecyclerViewAdapter(context, orderModelList);
+                        recyclerView = (RecyclerView) findViewById(R.id.orderHistoryRecyclerView);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                        recyclerView.setAdapter(orderHistoryRecyclerViewAdapter);
+
+                    }
+                });
     }
+
 }

@@ -96,10 +96,10 @@
         android:layout_height="47dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/white"
-        android:background="@color/Transparent"
         android:alpha="0.9"
-        android:text="Order History"
+        android:background="@color/Transparent"
+        android:text="Orders"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

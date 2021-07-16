@@ -39,6 +39,7 @@ public class DeliveryRecyclerViewAdapter extends RecyclerView.Adapter<DeliveryRe
         holder.phone.setText(mData.get(position).getPhone());
         holder.status.setText(mData.get(position).getStatus());
         holder.number.setText(mData.get(position).getOrderNumber());
+        holder.totalToPay.setText(mData.get(position).getTotalToPay());
         String address = mData.get(position).getLatitude() + ", " + mData.get(position).getLongitude();
         holder.address.setText(address);
 
@@ -91,6 +92,7 @@ public class DeliveryRecyclerViewAdapter extends RecyclerView.Adapter<DeliveryRe
         TextView status;
         TextView phone;
         TextView address;
+        TextView totalToPay;
         Button startDelivery;
         Button confirmDelivery;
         Button unableToDeliver;
@@ -109,6 +111,7 @@ public class DeliveryRecyclerViewAdapter extends RecyclerView.Adapter<DeliveryRe
             status = itemView.findViewById(R.id.deliveryStatus);
             phone = itemView.findViewById(R.id.deliveryPhone);
             address = itemView.findViewById(R.id.deliveryAddress);
+            totalToPay = itemView.findViewById(R.id.totalToPay);
 
         }
 

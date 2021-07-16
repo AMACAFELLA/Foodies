@@ -8,14 +8,18 @@ public class OrderModel {
     String phone;
     String latitude;
     String longitude;
+    String price;
+    String totalToPay;
 
-    public OrderModel (String name, String orderNumber, String status, String phone, String latitude, String longitude) {
+    public OrderModel (String name, String orderNumber, String status, String phone, String latitude, String longitude, String price, String totalToPay) {
         this.name = name;
         this.orderNumber = orderNumber;
         this.status = status;
         this.phone = phone;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.price = price;
+        this.totalToPay = totalToPay;
     }
 
     public OrderModel () {
@@ -68,5 +72,21 @@ public class OrderModel {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getTotalToPay() {
+        return totalToPay;
+    }
+
+    public void setTotalToPay(String totalToPay) {
+        this.totalToPay = totalToPay;
     }
 }

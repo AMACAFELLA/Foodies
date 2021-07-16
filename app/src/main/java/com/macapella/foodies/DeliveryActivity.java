@@ -48,6 +48,8 @@ public class DeliveryActivity extends AppCompatActivity {
                             List<OrderModel> orderModelList = new ArrayList<>();
                             querySnapshot.forEach( documentSnapshot -> {
                                 OrderModel orderModel = new OrderModel();
+                                String totalToPay = "E " + documentSnapshot.get("totalPrice").toString() +"0";
+                                orderModel.setTotalToPay(totalToPay);
                                 orderModel.setName(documentSnapshot.get("name").toString());
                                 orderModel.setPhone(documentSnapshot.get("phone").toString());
                                 orderModel.setOrderNumber(documentSnapshot.get("order-number").toString());

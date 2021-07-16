@@ -48,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
+        android:background="@color/gradient_start_color"
         android:onClick="onConfirm"
         android:text="Confirm and Submit Order"
         app:layout_constraintEnd_toEndOf="parent"

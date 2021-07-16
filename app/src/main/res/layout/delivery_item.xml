@@ -82,6 +82,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="Start Delivery"
+         android:background="@drawable/btn_gradient_style"
         app:layout_constraintEnd_toStartOf="@+id/deliveryConfirmDelivery"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deliveryStatus" />
@@ -95,6 +96,7 @@
         android:layout_marginEnd="16dp"
         android:text="Confirm Delivery"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/btn_gradient_style"
         app:layout_constraintStart_toEndOf="@+id/deliveryStartDelivery"
         app:layout_constraintTop_toBottomOf="@+id/deliveryStatus" />
 
@@ -105,6 +107,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_gradient_style"
         android:text="Unable to Deliver"
         app:layout_constraintEnd_toStartOf="@+id/deliveryGoTo"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +121,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="Go to Address"
+        android:background="@drawable/btn_gradient_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/deliveryUnable"
         app:layout_constraintTop_toBottomOf="@+id/deliveryConfirmDelivery" />

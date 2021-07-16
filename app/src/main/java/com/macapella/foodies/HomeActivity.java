@@ -5,6 +5,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -34,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     public Map <String, String> cartList = new HashMap<>();
     String uid;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

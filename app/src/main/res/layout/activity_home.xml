@@ -21,7 +21,7 @@
         android:id="@+id/homeNavBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:backgroundTint="@color/browser_actions_bg_grey"
+        android:background="@drawable/btn_gradient_style"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,32 +29,45 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="126dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:text="Home" />
+            android:alpha="0.9"
+            android:background="@color/Transparent"
+            android:text="Home"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/cart"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="115dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
+            android:alpha="0.9"
+            android:background="@color/Transparent"
             android:onClick="switchCart"
-            android:text="Cart" />
+            android:text="Cart"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/account"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_weight="1"
+            android:alpha="0.9"
+            android:background="@color/Transparent"
             android:onClick="switchAccount"
-            android:text="Account" />
+            android:text="Account"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

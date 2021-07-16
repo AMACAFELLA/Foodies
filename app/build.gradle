@@ -74,6 +74,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.5.0'
     implementation 'androidx.core:core:1.5.0'
+    implementation 'com.github.chetankoli1.BottomNavigation:chetanbottomnavigation:0.0.3'
 
 }
 secrets {

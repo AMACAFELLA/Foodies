@@ -29,6 +29,7 @@
             android:onClick="selectLocation"
             android:text="Confirm Location"
             android:layout_alignParentLeft="true"
+            android:background="@drawable/btn_gradient_style"
             android:layout_marginLeft="129dp" />
     </RelativeLayout>
 

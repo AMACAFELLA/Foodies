@@ -20,14 +20,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/admin_scr" />
+            app:srcCompat="@drawable/new_admin" />
 
         <LinearLayout
-            android:layout_width="369dp"
-            android:layout_height="326dp"
-            android:layout_marginTop="112dp"
+            android:layout_width="390dp"
+            android:layout_height="516dp"
+            android:layout_marginTop="148dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView2">
 
@@ -64,35 +65,69 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Account" />
+
+            <EditText
+                android:id="@+id/edit_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin" />
+
+            <EditText
+                android:id="@+id/edit_admin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Customer" />
 
             <EditText
                 android:id="@+id/edit_customer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery" />
+
+            <EditText
+                android:id="@+id/edit_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <Button
+            android:visibility="gone"
             android:id="@+id/adminButton"
-            android:background="@drawable/btn_gradient_style"
-            android:text="Submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="80dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_gradient_style"
+            android:text="Submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/adminData"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/adminData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="52dp"
-            android:background="@drawable/btn_gradient_style"
+            android:layout_marginEnd="136dp"
+            android:layout_marginBottom="36dp"
+            android:alpha="0.9"
+            android:background="@color/Transparent"
             android:text="Accounts"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

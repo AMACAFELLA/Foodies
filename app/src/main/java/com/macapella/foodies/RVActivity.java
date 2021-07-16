@@ -22,7 +22,7 @@ public class RVActivity extends AppCompatActivity {
     RVAdapter adapter;
     DAOAdmin dao;
     boolean isLoading = false;
-    String key = null;
+    String userID = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +57,7 @@ public class RVActivity extends AppCompatActivity {
 
     private void loadData() {
         swipeRefreshLayout.setRefreshing(true);
-        dao.get(key).addValueEventListener(new ValueEventListener() {
+        dao.get(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 ArrayList<User> users = new ArrayList<>();
@@ -66,7 +66,7 @@ public class RVActivity extends AppCompatActivity {
                     User u = data.getValue(User.class);
                     u.setKey(data.getKey());
                     users.add(u);
-                    key = data.getKey();
+                    userID = data.getKey();
                 }
                 adapter.setItems(users);
                 adapter.notifyDataSetChanged();

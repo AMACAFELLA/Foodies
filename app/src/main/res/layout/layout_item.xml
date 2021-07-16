@@ -8,7 +8,6 @@
     android:layout_marginTop="4dp"
     android:layout_marginEnd="4dp"
     android:layout_marginBottom="4dp"
-    android:background="@color/tab_indicator_gray"
     >
 
     <ImageView
@@ -30,7 +29,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="76dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -39,39 +38,43 @@
             android:layout_height="100dp"
             android:padding="5dp"
             android:src="@drawable/logo_fallow" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Text"
-                android:textSize="20sp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/txt_name"/>
+                android:text="Text"
+                android:textSize="10sp" />
+
             <TextView
+                android:id="@+id/txt_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Text"
-                android:textSize="20sp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/txt_phone"/>
+                android:text="Text"
+                android:textSize="10sp" />
+
             <TextView
+                android:id="@+id/txt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Text"
-                android:textSize="20sp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/txt_email"/>
+                android:text="Text"
+                android:textSize="10sp" />
+
             <TextView
+                android:id="@+id/txt_acc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Text"
-                android:textSize="20sp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/txt_acc"/>
+                android:text="Text"
+                android:textSize="10sp" />
         </LinearLayout>
 
     </LinearLayout>

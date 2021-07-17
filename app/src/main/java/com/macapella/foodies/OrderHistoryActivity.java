@@ -108,20 +108,23 @@ public class OrderHistoryActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull @NotNull Task<DataSnapshot> task) {
                         DataSnapshot dataSnapshot = task.getResult();
-                        List<OrderModel> orderModelList = new ArrayList<>();
-                        for (DataSnapshot child: dataSnapshot.getChildren()) {
-                            OrderModel orderModel = new OrderModel();
-                            orderModel.setName(child.child("name").getValue().toString());
-                            orderModel.setStatus(child.child("status").getValue().toString());
-                            orderModel.setTotalToPay(child.child("totalPrice").getValue().toString());
-                            orderModel.setOrderNumber(child.child("orderNumber").getValue().toString());
-                            orderModelList.add(orderModel);
-                        }
+                        if (dataSnapshot.exists()){
+                            List<OrderModel> orderModelList = new ArrayList<>();
+                            for (DataSnapshot child: dataSnapshot.getChildren()) {
+                                OrderModel orderModel = new OrderModel();
+                                orderModel.setName(child.child("name").getValue().toString());
+                                orderModel.setStatus(child.child("status").getValue().toString());
+                                orderModel.setTotalToPay(child.child("totalPrice").getValue().toString());
+                                orderModel.setOrderNumber(child.child("orderNumber").getValue().toString());
+                                orderModelList.add(orderModel);
+                            }
 
-                        OrderHistoryRecyclerViewAdapter orderHistoryRecyclerViewAdapter = new OrderHistoryRecyclerViewAdapter(context, orderModelList);
-                        recyclerView = (RecyclerView) findViewById(R.id.orderHistoryRecyclerView);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                        recyclerView.setAdapter(orderHistoryRecyclerViewAdapter);
+                            OrderHistoryRecyclerViewAdapter orderHistoryRecyclerViewAdapter = new OrderHistoryRecyclerViewAdapter(context, orderModelList);
+                            recyclerView = (RecyclerView) findViewById(R.id.orderHistoryRecyclerView);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                            recyclerView.setAdapter(orderHistoryRecyclerViewAdapter);
+
+                        }
 
                     }
                 });

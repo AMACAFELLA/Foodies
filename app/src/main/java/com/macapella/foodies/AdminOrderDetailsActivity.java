@@ -127,5 +127,8 @@ public class AdminOrderDetailsActivity extends AppCompatActivity {
                                 .delete();
                     }
                 });
+
+        Intent newIntent = new Intent(context, AdminActivity.class);
+        startActivity(newIntent);
     }
 }

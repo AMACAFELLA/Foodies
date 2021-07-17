@@ -79,6 +79,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Glide.with(mContext)
                 .load(mData.get(position).getImg())
+                .override(100, 100)
+                .centerCrop()
                 .into(holder.img);
     }
 

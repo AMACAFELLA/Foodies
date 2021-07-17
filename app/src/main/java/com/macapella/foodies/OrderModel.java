@@ -1,5 +1,7 @@
 package com.macapella.foodies;
 
+import java.util.List;
+
 public class OrderModel {
 
     String name;
@@ -10,8 +12,9 @@ public class OrderModel {
     String longitude;
     String price;
     String totalToPay;
+    List<ItemModel> itemModelList;
 
-    public OrderModel (String name, String orderNumber, String status, String phone, String latitude, String longitude, String price, String totalToPay) {
+    public OrderModel (String name, String orderNumber, String status, String phone, String latitude, String longitude, String price, String totalToPay, List<ItemModel> itemModelList) {
         this.name = name;
         this.orderNumber = orderNumber;
         this.status = status;
@@ -20,6 +23,7 @@ public class OrderModel {
         this.longitude = longitude;
         this.price = price;
         this.totalToPay = totalToPay;
+        this.itemModelList = itemModelList;
     }
 
     public OrderModel () {
@@ -88,5 +92,13 @@ public class OrderModel {
 
     public void setTotalToPay(String totalToPay) {
         this.totalToPay = totalToPay;
+    }
+
+    public List<ItemModel> getItemModelList() {
+        return itemModelList;
+    }
+
+    public void setItemModelList(List<ItemModel> itemModelList) {
+        this.itemModelList = itemModelList;
     }
 }

@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class OrderDetailRecyclerViewAdapter extends RecyclerView.Adapter<OrderDetailRecyclerViewAdapter.viewHolder> {
+public class AdminOrderDetailsRecyclerViewAdapter extends RecyclerView.Adapter<AdminOrderDetailsRecyclerViewAdapter.viewHolder> {
 
     private final Context mContext;
     private final List<ItemModel> mData;
 
-    public OrderDetailRecyclerViewAdapter(Context mContext, List<ItemModel> mData) {
+    public AdminOrderDetailsRecyclerViewAdapter(Context mContext, List<ItemModel> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -26,13 +26,13 @@ public class OrderDetailRecyclerViewAdapter extends RecyclerView.Adapter<OrderDe
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        v = inflater.inflate(R.layout.order_detail_item, parent, false);
+        v = inflater.inflate(R.layout.admin_orders_details_item, parent, false);
 
         return new viewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrderDetailRecyclerViewAdapter.viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdminOrderDetailsRecyclerViewAdapter.viewHolder holder, int position) {
 
         holder.name.setText(mData.get(position).getName());
         String quantity = "X" + Integer.toString(mData.get(position).getQuantity());
@@ -54,8 +54,8 @@ public class OrderDetailRecyclerViewAdapter extends RecyclerView.Adapter<OrderDe
         public viewHolder(@NonNull View itemView) {
             super(itemView);
 
-            name = itemView.findViewById(R.id.orderHistoryDetailItem);
-            quantity = itemView.findViewById(R.id.orderHistoryDetailQuantity);
+            name = itemView.findViewById(R.id.adminOrderDetailItem);
+            quantity = itemView.findViewById(R.id.adminOrderDetailQuantity);
         }
 
     }

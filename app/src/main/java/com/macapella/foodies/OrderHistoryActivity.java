@@ -64,21 +64,39 @@ public class OrderHistoryActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
                                         DocumentSnapshot documentSnapshot = task.getResult();
+                                        if (documentSnapshot.exists()) {
+                                            String name = documentSnapshot.getString("name");
+                                            String orderNumber = documentSnapshot.getString("order-number");
+                                            String status = documentSnapshot.getString("status");
+                                            String totalToBePaid = "E " + documentSnapshot.getString("totalPrice") + "0";
 
-                                        String name = documentSnapshot.getString("name");
-                                        String orderNumber = documentSnapshot.getString("order-number");
-                                        String status = documentSnapshot.getString("status");
-                                        String totalToBePaid = "E " + documentSnapshot.getString("totalPrice") + "0";
+                                            TextView nameText = (TextView) findViewById(R.id.activeOrderName);
+                                            TextView numberText = (TextView) findViewById(R.id.activeOrderNumber);
+                                            TextView statusText = (TextView) findViewById(R.id.activeOrderStatus);
+                                            TextView totalText = (TextView) findViewById(R.id.activeOrderTotal);
 
-                                        TextView nameText = (TextView) findViewById(R.id.activeOrderName);
-                                        TextView numberText = (TextView) findViewById(R.id.activeOrderNumber);
-                                        TextView statusText = (TextView) findViewById(R.id.activeOrderStatus);
-                                        TextView totalText = (TextView) findViewById(R.id.activeOrderTotal);
+                                            nameText.setText(name);
+                                            numberText.setText(orderNumber);
+                                            statusText.setText(status);
+                                            totalText.setText(totalToBePaid);
+                                        } else {
+                                            String name = "No current order";
+                                            String orderNumber = "No current order";
+                                            String status = "No current order";
+                                            String totalToBePaid = "No current order";
 
-                                        nameText.setText(name);
-                                        numberText.setText(orderNumber);
-                                        statusText.setText(status);
-                                        totalText.setText(totalToBePaid);
+                                            TextView nameText = (TextView) findViewById(R.id.activeOrderName);
+                                            TextView numberText = (TextView) findViewById(R.id.activeOrderNumber);
+                                            TextView statusText = (TextView) findViewById(R.id.activeOrderStatus);
+                                            TextView totalText = (TextView) findViewById(R.id.activeOrderTotal);
+
+                                            nameText.setText(name);
+                                            numberText.setText(orderNumber);
+                                            statusText.setText(status);
+                                            totalText.setText(totalToBePaid);
+                                        }
+
+
                                     }
                                 });
                     }

@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity"
-    android:orientation="vertical">
+    android:background="#F2F2F2"
+    android:orientation="vertical"
+    tools:context=".AdminActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,89 +23,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/new_admin" />
 
-        <LinearLayout
-            android:layout_width="390dp"
-            android:layout_height="516dp"
-            android:layout_marginTop="148dp"
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="175dp"
+            android:text="Current Orders:"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView2">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name" />
-
-            <EditText
-                android:id="@+id/edit_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone" />
-
-            <EditText
-                android:id="@+id/edit_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email" />
-
-            <EditText
-                android:id="@+id/edit_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Account" />
-
-            <EditText
-                android:id="@+id/edit_account"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Admin" />
-
-            <EditText
-                android:id="@+id/edit_admin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Customer" />
-
-            <EditText
-                android:id="@+id/edit_customer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Delivery" />
-
-            <EditText
-                android:id="@+id/edit_delivery"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <Button
-            android:visibility="gone"
             android:id="@+id/adminButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,6 +43,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/btn_gradient_style"
             android:text="Submit"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/adminData"
             app:layout_constraintHorizontal_bias="0.0"
@@ -130,6 +62,19 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/adminOrdersRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="125dp"
+            android:background="#f2f2f2 "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

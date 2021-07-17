@@ -38,7 +38,8 @@
             android:background="@color/Transparent"
             android:text="Home"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="16sp"
+            app:srcCompat="@drawable/ic_baseline_home_24" />
 
         <Button
             android:id="@+id/cart"
@@ -52,7 +53,7 @@
             android:onClick="switchCart"
             android:text="Cart"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/account"
@@ -66,7 +67,7 @@
             android:onClick="switchAccount"
             android:text="Account"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

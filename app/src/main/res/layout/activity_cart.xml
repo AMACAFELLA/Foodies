@@ -60,7 +60,7 @@
             android:onClick="switchHome"
             android:text="Home"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/cart"
@@ -73,7 +73,7 @@
             android:background="@color/Transparent"
             android:text="Cart"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/account"
@@ -87,6 +87,6 @@
             android:onClick="switchAccount"
             android:text="Account"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

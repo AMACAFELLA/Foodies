@@ -57,6 +57,7 @@ public class AccountActivity extends AppCompatActivity {
         final TextView Accountname = (TextView) findViewById(R.id.Accountname);
         final TextView Accountemail = (TextView) findViewById(R.id.Accountemail);
         final TextView Accountphone = (TextView) findViewById(R.id.Accountphone);
+        final TextView Accounttype = (TextView) findViewById(R.id.Accounttype);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -65,13 +66,13 @@ public class AccountActivity extends AppCompatActivity {
 
                 if(userProfile != null){
                     String name = userProfile.fullname;
-                    String email = userProfile.email;
-                    String phone = userProfile.phone;
+                    String email = userProfile.getEmail();
+                    String phone = userProfile.getPhone();
+                    String account = userProfile.account;
 
                     welcomeTextView.setText("Welcome, " + name);
                     Accountname.setText("Name: " + name);
-                    Accountemail.setText("Email" + email);
-                    Accountphone.setText("Phone Number: " + phone);
+                    Accountemail.setText("Email:" + email);
                 }
             }
 

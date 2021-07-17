@@ -33,20 +33,6 @@
         app:layout_constraintVertical_bias="0.115" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Skip"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="1"
-        android:layout_marginRight="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView"/>
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,13 +65,13 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="306dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="5dp"
         android:text="You may order a takeaway from the restaurant menu or the takeout menu. A short time later you will receive a text message that your order is on the way, followed shortly by an SMS that it has arrived."
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="5dp"
         app:layout_constraintHeight_percent=".1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/textView3"

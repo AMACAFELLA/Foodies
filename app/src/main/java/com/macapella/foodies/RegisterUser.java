@@ -74,7 +74,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         Boolean customer = true;
         String admin = "false";
         Boolean delivery;
-        String account = "ccustomer";
+        String account = "customer";
 
         if(fullname.isEmpty()){
             editTextFullName.setError("Your full name is required!");

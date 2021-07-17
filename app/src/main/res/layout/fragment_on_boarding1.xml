@@ -79,13 +79,13 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="The fallow restaurant provides gourmet dishes. High-grade ingredients sourced from all over the world are cooked with sophisticated cooking techniques by a dedicated chef, creating a unique dish that can't be found anywhere else on this earth."
+        android:layout_width="318dp"
+        android:layout_height="121dp"
+        android:layout_marginTop="5dp"
+        android:text="The Fallow restaurant provides gourmet dishes. High-grade ingredients sourced from all over the world are cooked with sophisticated cooking techniques by a dedicated chef, creating a unique dish that can't be found anywhere else on this earth."
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="5dp"
         app:layout_constraintHeight_percent=".1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/textView3"

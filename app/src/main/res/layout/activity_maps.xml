@@ -22,15 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_marginStart="129dp"
+            android:layout_marginLeft="129dp"
             android:layout_marginTop="-2dp"
+            android:background="@drawable/btn_gradient_style"
             android:onClick="selectLocation"
             android:text="Confirm Location"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/btn_gradient_style"
-            android:layout_marginLeft="129dp" />
+            android:textColor="@color/white" />
     </RelativeLayout>
 
 </FrameLayout>

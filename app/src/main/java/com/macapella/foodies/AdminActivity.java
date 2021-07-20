@@ -57,7 +57,7 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 });
 
-
+        //button to redirect to the RVActivity
         Button btn = findViewById(R.id.adminButton);
         Button btn_account = findViewById(R.id.adminData);
         btn_account.setOnClickListener(v ->

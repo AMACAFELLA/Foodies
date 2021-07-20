@@ -25,6 +25,7 @@ public class RVActivity extends AppCompatActivity {
     String userID = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Assigning to resources
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rvactivity);
         swipeRefreshLayout = findViewById(R.id.swipe);
@@ -56,9 +57,11 @@ public class RVActivity extends AppCompatActivity {
     }
 
     private void loadData() {
+        //When user swipes to refresh the page more data is added
         swipeRefreshLayout.setRefreshing(true);
         dao.get(userID).addValueEventListener(new ValueEventListener() {
             @Override
+            //Load the data from users
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 ArrayList<User> users = new ArrayList<>();
                 for(DataSnapshot data : snapshot.getChildren())

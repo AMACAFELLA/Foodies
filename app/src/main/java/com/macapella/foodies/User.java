@@ -7,6 +7,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Exclude
+    // Declaring the user data
     private String key;
     public String fullname;
     public String phone;
@@ -19,7 +20,7 @@ public class User implements Serializable {
     public User(){
 
     }
-
+    //Assigning the data
     public User(String fullname, String phone, String email, String account){
         this.fullname = fullname;
         this.phone = phone;
@@ -30,7 +31,7 @@ public class User implements Serializable {
 
     public User(String toString, String toString1) {
     }
-
+    //Getting the data
     public String getFullname()
     {
         return fullname;

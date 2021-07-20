@@ -36,7 +36,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
-
+        //Assigning declared
         mAuth = FirebaseAuth.getInstance();
 
         banner = (TextView) findViewById(R.id.banner);
@@ -65,7 +65,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-
+    //Data that gets sent to the realtime database
     private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -75,7 +75,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String admin = "false";
         Boolean delivery;
         String account = "customer";
-
+        //Validation
         if(fullname.isEmpty()){
             editTextFullName.setError("Your full name is required!");
             editTextFullName.requestFocus();
@@ -114,6 +114,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
+                    //Registration successful data will be sent to the database
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             User user = new User(fullname, phone, email,account);

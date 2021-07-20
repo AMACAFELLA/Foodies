@@ -19,20 +19,18 @@ public class ForgotPassword extends AppCompatActivity {
     private EditText emailEditText;
     private Button resetPasswordButton;
     private ProgressBar progressBar;
-
     FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-
+        //assigning fields to resources
         emailEditText = (EditText) findViewById(R.id.email);
         resetPasswordButton = (Button) findViewById(R.id.resetPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         auth = FirebaseAuth.getInstance();
-
+        //Button reset password
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +57,7 @@ public class ForgotPassword extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
+            //If email matched the email in database user will be sent to users account to rest password, else error.
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(ForgotPassword.this, "Email sent, check you email to rest your password.", Toast.LENGTH_SHORT).show();

@@ -21,20 +21,24 @@ public class DAOAdmin {
         //FirebaseDatabase db = FirebaseDatabase.getInstance();
         //databaseReference = db.getReference(User.class.getSimpleName());
     }
+    //Adding user to the firebase data using the reference path so accounts add are in the same instance.
     public Task<Void> add(User u)
     {
        return reference.push().setValue(u);
     }
+    //Updates the data of the user for that particular reference in firebase
     public Task<Void> update(String userID, HashMap<String, Object>hashMap)
     {
         return reference.child(userID).updateChildren(hashMap);
     }
+    //Deletes the user reference and all the data from firebase
     public Task<Void> delete(String userID)
     {
        return reference.child(userID).removeValue();
     }
     public Query get(String userID)
     {
+        //Admin would scroll down to see the first 8 and load data from firebase to retrieve the next 8 data.
         if(userID == null)
         {
             return reference.orderByKey().limitToFirst(8);

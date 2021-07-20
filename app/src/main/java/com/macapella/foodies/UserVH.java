@@ -12,6 +12,7 @@ public class UserVH  extends RecyclerView.ViewHolder {
     public TextView txt_name, txt_phone, txt_email, txt_acc, txt_option;
     public UserVH(@NonNull @NotNull View itemView) {
         super(itemView);
+        //Assigning resources
         txt_name = itemView.findViewById(R.id.txt_name);
         txt_phone = itemView.findViewById(R.id.txt_phone);
         txt_email = itemView.findViewById(R.id.txt_email);

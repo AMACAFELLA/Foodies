@@ -31,7 +31,7 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-
+        //reference to the logout button, signs the user of the account.
         logout = (Button)findViewById(R.id.signOut);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +40,7 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(new Intent(AccountActivity.this, LoginActivity.class));
             }
         });
+        //The order history button to redirect to ordehistory activity
         orderHist = (Button) findViewById(R.id.orderHist);
         orderHist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,17 +49,17 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-
+        //Firebase reference to get current user and firebase data reference
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
-
+        //assigning text view to the resource.
         final TextView welcomeTextView = (TextView) findViewById(R.id.welcome);
         final TextView Accountname = (TextView) findViewById(R.id.Accountname);
         final TextView Accountemail = (TextView) findViewById(R.id.Accountemail);
         final TextView Accountphone = (TextView) findViewById(R.id.Accountphone);
         final TextView Accounttype = (TextView) findViewById(R.id.Accounttype);
-
+        //Getting data from firebase to display in account activity
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {

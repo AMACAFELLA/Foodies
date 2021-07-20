@@ -29,12 +29,13 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        //Assinging resouces and setting splash screen time
         splash = findViewById(R.id.img_splash);
         splash.animate().translationY(-1600).setDuration(1000).setStartDelay(4000);
         viewPager = findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        //shared preference for when the user opens the app again they won't see the walkthrough screens
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -68,7 +69,7 @@ public class SplashActivity extends AppCompatActivity {
         public ScreenSlidePagerAdapter(@NonNull FragmentManager fm) {
             super(fm);
         }
-
+        //Fragments navigation from page to page.
         @NonNull
         @Override
         public Fragment getItem(int position) {

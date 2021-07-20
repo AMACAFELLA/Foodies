@@ -16,9 +16,10 @@ import static android.content.Context.MODE_PRIVATE;
 public class OnBoardingFragment3 extends Fragment {
     FloatingActionButton fab;
     @Override
+    //Assigns fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_on_boarding3, container,false);
-
+        //Button to go to login activity
         fab = root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

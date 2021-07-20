@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 public class OnBoardingFragment1 extends Fragment {
 
     @Override
+    //Assigns fragment
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_on_boarding1, container,false);
         return root;

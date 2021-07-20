@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class RVAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
+    //new array for users
     ArrayList<User> list = new ArrayList<>();
     public RVAdapter(Context ctx)
     {
@@ -39,11 +40,13 @@ public class RVAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull RecyclerView.ViewHolder holder, int position) {
+        //Data displayed in RVActivity
         UserVH vh = (UserVH) holder;
         User u = list.get(position);
         vh.txt_name.setText(u.getFullname());
         vh.txt_phone.setText(u.getPhone());
         vh.txt_email.setText(u.getEmail());
+        //Menu functions are set edit and removing
         vh.txt_option.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(context, vh.txt_option);
             popupMenu.inflate(R.menu.option_menu);

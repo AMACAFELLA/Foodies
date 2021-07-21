@@ -26,6 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Responsible for the Order Confirmation activity that shows the user the information and details of their recently completed and submitted order
+ * Pulls the information pertaining to their order from Firebase
+ * Contains methods for the Home, Cart, and Account buttons of the navbar
+ */
+
 public class OrderConfirmationActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
@@ -36,6 +42,12 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
 
+        /*
+        Firebase methods:
+        Retrieves the order number from the user's most recently placed order, which was just placed
+        Using the order number, looks up the order in Firestore, and retrieves its information, and passes that information to
+        the activity layout
+         */
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();

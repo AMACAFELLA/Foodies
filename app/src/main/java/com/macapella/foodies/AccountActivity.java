@@ -40,7 +40,7 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(new Intent(AccountActivity.this, LoginActivity.class));
             }
         });
-        //The order history button to redirect to ordehistory activity
+        //The order history button to redirect to order history activity
         orderHist = (Button) findViewById(R.id.orderHist);
         orderHist.setOnClickListener(new View.OnClickListener() {
             @Override

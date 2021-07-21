@@ -1,5 +1,9 @@
 package com.macapella.foodies;
 
+/**
+ * This class acts as the object for all Menu items pulled from the database and used through the app
+ */
+
 public class ItemModel {
 
     String name;

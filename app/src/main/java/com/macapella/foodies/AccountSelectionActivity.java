@@ -18,6 +18,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Is responsible for providing admins/drivers the opportunity to select which account use they will continue as
+ * This activity is only seen if an account has admin or driver privileges
+ * A user may continue as only one of Admin, Driver, or Customer at a time
+ */
+
 public class AccountSelectionActivity extends AppCompatActivity {
 
     Context context = this;
@@ -28,6 +34,11 @@ public class AccountSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account_selection);
     }
 
+    /*
+    Called by clicking on the Admin option
+    Checks to make sure that an account has Admin privileges
+    If an account has Admin privileges, takes the user to the Admin activity
+    */
     public void onAdmin(View view) {
         DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -46,6 +57,11 @@ public class AccountSelectionActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+    Called by clicking on the Delivery option
+    Checks to make sure that an account has Delivery privileges
+    If an account has Admin privileges, takes the user to the Delivery activity
+    */
     public void onDelivery(View view) {
         DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -64,6 +80,10 @@ public class AccountSelectionActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+    Called by clicking on the Customer option
+    Takes the user to the Admin activity
+    */
     public void onCustomer(View view) {
         DatabaseReference mData = FirebaseDatabase.getInstance().getReference();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

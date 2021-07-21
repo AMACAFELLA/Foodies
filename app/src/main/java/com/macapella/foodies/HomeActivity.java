@@ -1,14 +1,14 @@
 package com.macapella.foodies;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,17 +20,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.sagarkoli.chetanbottomnavigation.chetanBottomNavigation;
+
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
+/**
+ * Is responsible for the home/menu activity
+ * Dynamically shows the menu that is provided from Firestore
+ * Holds methods used to fill the recycler view
+ * Holds methods for the navbar and adding an item to the user's cart
+ */
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -39,7 +44,11 @@ public class HomeActivity extends AppCompatActivity {
     String uid;
 
 
-
+    /*
+    Firebase methods:
+    Responsible for retrieving the information stored under "menu"
+    Passes the database information to the recyclerviews and adapters
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,17 +128,29 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-
+    /*
+    Method called by button on the navbar for "Cart"
+    */
     public void switchCart(View view) {
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }
 
+    /*
+    Method called by button on the navbar for "Account"
+    */
     public void switchAccount(View view) {
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
 
+    /*
+    Called by the "Add to Cart" button from the recyclerview adapter
+    Is passed the name of the item, the price of the item, and the quantity of the item
+    If the quantity selected when the button is pressed is 0, it doesn't add anything
+    If the quantity is greater that 0, a check is made to see if the item has already been added to the user's cart
+    and if the item is already in the user's cart, the quantity is added to that quantity to produce the new actual quantity
+    */
     public void addToCart(String name, Integer price, Integer quantity) {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

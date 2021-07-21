@@ -32,6 +32,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.DoubleStream;
 
+/**
+ * Responsible for the Verification activity that occurs between delivery location selection
+ * and the payment explanation/order completion
+ * Auto-fills user information for the order based on user account details from registration
+ * Allows the user  to edit or change some customer details (email, name, phone number)
+ * Provides a list of the items being ordered
+ * Contains a button for updating the information in the database and continuing to the Payment activity
+ */
+
 public class VerificationActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
@@ -41,6 +50,9 @@ public class VerificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
 
+        /*
+        Retrieves the user's account information and passes the information to editable parts of the layout
+         */
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -102,7 +114,10 @@ public class VerificationActivity extends AppCompatActivity {
 
         Context context = this;
 
-
+        /*
+        Retrieves the information of the item contents of the customer's cart and passes the information to
+        the recyclerview adapter
+         */
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("cart")
                 .get()
@@ -126,6 +141,10 @@ public class VerificationActivity extends AppCompatActivity {
 
     }
 
+    /*
+    Takes the current values of the fields from the layout and updates the information under the user's information in Firestore
+    Starts the payment activity
+     */
     public void toPayment (View view) {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

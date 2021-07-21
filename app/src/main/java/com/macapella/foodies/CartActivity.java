@@ -30,6 +30,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Is responsible for acting as the user's cart
+ * Holds a recycler view for cart items
+ * Holds the methods that are used by cart items in the recycler view
+ * Holds methods that are part of the activity itself (such as the bottom nav bar and checkout)
+ */
+
 public class CartActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
@@ -43,9 +50,13 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         Context context = this;
 
+        /*
+        Firebase methods:
+        Responsible for retrieving the information stored under an individual user's "cart"
+        Passes the database information to the recyclerview and adapter
+         */
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(uid).collection("cart")
                 .get()
@@ -68,16 +79,26 @@ public class CartActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+    Method called by button on the navbar for "Home"
+    */
     public void switchHome(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
+    /*
+    Method called by button on the navbar for "Account"
+    */
     public void switchAccount(View view) {
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
     }
 
+    /*
+    Called by the "Checkout" button
+    Checks contents of cart, if not empty, continues to the delivery location selection activity
+    */
     public void checkoutNow (View view) {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -102,6 +123,10 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    /*
+    Called by one of the buttons from the activity's recyclerview adapter, is passed the quantity that should be reflected in the database
+    and the item that is being changed
+     */
     public void changeQuantity(int position, int quantity) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();
@@ -154,6 +179,9 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    /*
+    Is called from the activity's recyclerview adapter, and is passed and item that is then removed from the user's cart in the database
+     */
     public void removeItem(int position) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();

@@ -30,6 +30,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 
+/**
+ * Responsible for the Google Maps activity where the user selects the delivery location of an order
+ * Allows for the user to short-press tap to change the marker of their location
+ * Allows for the user to center the map over their device's GPS location
+ * Allows the the user to confirm that their location is correct, continuing to the next activty and passing the information to the database
+ */
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback  {
 

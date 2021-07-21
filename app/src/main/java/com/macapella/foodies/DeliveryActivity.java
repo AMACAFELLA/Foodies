@@ -26,6 +26,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Is responsible for the delivery/driver activity
+ * Provides the driver a list of all active orders with information pertaining to the delivery
+ * User must have driver/delivery privileges to see this activity
+ * Contains methods for updating the status of the order, completing an order, and for opening Google Maps with
+ * the customer's address used as the destination
+ */
+
 public class DeliveryActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
@@ -38,6 +46,10 @@ public class DeliveryActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        /*
+        Firebase methods:
+        Retrieves the information of all active orders, passes that information to the recyclerview adapter
+         */
         db.collection("active-orders")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -70,6 +82,11 @@ public class DeliveryActivity extends AppCompatActivity {
 
     }
 
+    /*
+    Called by the recyclerview adapter from the "Go To" button
+    Is passed a latitude and longitude
+    Passes the coordinates of the customer to Google Maps and launches directions to that destination
+     */
     public void goToAddress(String latitude, String longitude, Context cont) {
 
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude);
@@ -78,6 +95,13 @@ public class DeliveryActivity extends AppCompatActivity {
         cont.startActivity(mapIntent);
     }
 
+    /*
+    Called by the recyclerview adapter from the order completion button
+    Is passed an order number
+    The specified order number is removed from active orders
+    The specified order's status is updated to "Completed"
+    The specified order's information is then passed to the customer's order history
+     */
     public void confirmDelivery(String number) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -115,6 +139,11 @@ public class DeliveryActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+    Called by the recyclerview adapter from the start delivery button
+    Is passed an order number
+    The specified order's status is updated to "Sent out for delivery"
+     */
     public void startDelivery(String number) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> statusStart = new HashMap<String, Object>();
@@ -123,6 +152,11 @@ public class DeliveryActivity extends AppCompatActivity {
                 .update(statusStart);
     }
 
+    /*
+    Called by the recyclerview adapter from the unable to delivery button
+    Is passed an order number
+    The specified order's status is updated to "Delivery attempt made: Unable to deliver"
+     */
     public void unableToDeliver(String number) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> statusStart = new HashMap<String, Object>();

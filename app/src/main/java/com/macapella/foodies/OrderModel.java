@@ -2,6 +2,10 @@ package com.macapella.foodies;
 
 import java.util.List;
 
+/**
+ * Is the class for the Order object that is used when retrieving order information from Firebase and throughout the app
+ */
+
 public class OrderModel {
 
     String name;

@@ -33,6 +33,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Responsible for the Order History activity that shows a user's order history
+ * Provides a sections showing the user's  current order information
+ * Provides a section with a list of the user's completed/canceled orders, with buttons to show more details of that order
+ */
+
 public class OrderHistoryActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -46,6 +52,15 @@ public class OrderHistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
+
+        /*
+        Firebase methods:
+        First checks to see if the user has an active order
+        If the user does not have an active order, the fields of the order's details reflect this
+        If the user does have an active order, information from that order is retrieved and the information is passed to the activity layout
+        Then checks the user's account for their past completed/canceled orders
+        If there are past orders, the information from each order is retrieved and passed to a recyclerview adapter
+         */
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference mData = FirebaseDatabase.getInstance().getReference();

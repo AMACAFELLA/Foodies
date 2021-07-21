@@ -26,6 +26,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Is responsible for providing details of an order previously selected from the Admin activity
+ * Contains a button that will cancel an order
+ * The button that starts this activity is part of the Admin activity recyclerview adapter
+ */
+
 public class AdminOrderDetailsActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
@@ -39,6 +45,12 @@ public class AdminOrderDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String orderNumber = intent.getStringExtra("orderNumber");
 
+        /*
+        Firebase methods:
+        Uses the intent getExtra passed to the activity to get the order number of the order selected by the user
+        The specific order's information is retrieved from Firestore
+        Information is passed to the activity layout
+         */
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("active-orders").document(orderNumber)
                 .get()
@@ -89,6 +101,12 @@ public class AdminOrderDetailsActivity extends AppCompatActivity {
                 });
     }
 
+    /*
+    Called when the Cancel Order button is pressed
+    Removes the order from the active-orders collection in Firestore by "completing" the order,
+    but updating the status of the order to show that it was canceled before adding its information to the customer's
+    order history
+     */
     public void cancelOrder(View view) {
         Intent intent = getIntent();
         String orderNumber = intent.getStringExtra("orderNumber");

@@ -30,6 +30,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Responsible for the Payment activity that shows the total of a order close to completion and submission, explains the payment process to the customer
+ * Has a button for confirming, completing, and submitting the order
+ */
+
 public class PaymentActivity extends AppCompatActivity {
 
     Context context = this;
@@ -40,6 +45,10 @@ public class PaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        /*
+        Retrieves the information of the total price of the user's cart
+        Passes the information to the layout of the activity
+         */
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users").document(mAuth.getCurrentUser().getUid())
@@ -58,6 +67,13 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
+    /*
+    Called when the Confirm Order button is pressed
+    Retrieves all of the information of the customer that had been entered so far and saved to the user's information in Firestore
+    Retrieves all of the information of the items in the user's cart in Firestore
+    Retrieves the current order number from Firestore and adds 1, assigns the new number as the order's order number
+    Passes the combined groups of information to the active orders section of Firestore together as one order
+     */
     public void onConfirm(View view)  {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

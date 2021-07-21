@@ -22,6 +22,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Responsible for showing the details of a selected order from a user's order history past completed orders list
+ * Shows general customer information associated with an order and the items that were ordered
+ * Is started from the recyclerview adapter of the Order History activity
+ */
+
 public class OrderHistoryDetailsActivity extends AppCompatActivity {
 
     public RecyclerView recyclerView;
@@ -32,6 +38,12 @@ public class OrderHistoryDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history_details);
 
+        /*
+        Gets an order number from the intent getExtra
+        Uses this order number to retrieve information on the order from Firebase
+        First gets the customer information of the order and passes the information to the activity layout
+        Next gets the information of the items on the order and passes their information to a recyclerview adapter
+         */
         Intent intent = getIntent();
         String orderNumber = intent.getStringExtra("orderNumber");
 
